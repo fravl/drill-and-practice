@@ -1,0 +1,37 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Topics</h1>
+
+<%~ includeFile("./partials/validationErrors.eta", it) %>
+<%if(it.isUserAdmin) { %>
+<form class="row g-2" method="POST" action="/topics">
+  
+  <div class="col-auto">
+    <label for="inputTopic" class="visually-hidden">Topic</label>
+    <input type="text" name="name" class="form-control" id="inputTopic" value="<%= it.name ? it.name : '' %>" placeholder="Topic">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Add topic</button>
+  </div>
+</form>
+<% } %>
+
+<% if (it.topics && it.topics.length > 0) { %>
+<div class="list-group">
+<% it.topics.forEach(topic => { %>
+  <a href="/topics/<%= topic.id %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    <%= topic.name %>
+    <% if(it.isUserAdmin) { %>
+      <form method="POST" action="/topics/<%= topic.id %>/delete">
+          <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+     <% } %>
+  </a>
+<% }); %>
+</div>
+
+<% } else { %>
+
+<p>No topics yet.</p>
+
+<% } %>

@@ -1,0 +1,19 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Incorrect!</h1> 
+<a class="btn btn-primary" href="/quiz/<%= it.topicId %>" role="button">Next question</a>
+
+
+<% if(it.correctAnswers && it.correctAnswers.length > 0) { %>
+<h2>Correct answer options:</h2>
+<div class="list-group">
+<% it.correctAnswers.forEach(option => { %>
+  <div class="list-group-item d-flex align-items-center">
+    <%= option.option_text %>
+  </div>
+<% }); %>
+</div>
+<% } else { %>
+<div>There were no correct answer options.</div>
+<% } %>
+

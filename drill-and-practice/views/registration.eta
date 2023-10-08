@@ -1,0 +1,29 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Register</h1>
+                    <%~ includeFile("./partials/validationErrors.eta", it) %>
+
+                    <form method="POST" action="/auth/register">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" value="<%= it.email ? it.email : '' %>" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" value="<%= it.password ? it.password : '' %>" class="form-control" id="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                    <p class="mt-3 text-center">Already registered? <a href="/auth/login">Login here.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

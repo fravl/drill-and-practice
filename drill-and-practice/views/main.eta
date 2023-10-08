@@ -1,0 +1,18 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1>Welcome to Drill and Practice!</h1>
+            <p class="lead">Explore a world of knowledge by crafting and exchanging questions across diverse subjects. Challenge yourself with quizzes featuring both your own and community-crafted questions.</p>
+            <a class="btn btn-primary" href="/auth/register">Register</a>
+            <a class="btn btn-outline-primary ml-3" href="/auth/login">Login</a>
+            <h2 class="mt-4">Statistics</h2>
+            <ul class="list-unstyled">
+                <li>Available topics: <%=it.topicCount%></li>
+                <li>Created questions: <%=it.questionCount%></li>
+                <li>Questions answered: <%=it.answerCount%></li>
+            </ul>
+        </div>
+    </div>
+</div>

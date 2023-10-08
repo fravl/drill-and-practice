@@ -1,0 +1,32 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1><%= it.topic.name %></h1>
+<h2>Questions</h2>
+
+<%~ includeFile("./partials/validationErrors.eta", it) %>
+
+<form class="row" method="POST" action="/topics/<%= it.topic.id %>/questions">
+  
+  <div class="col-6">
+    <label for="inputQuestion" class="visually-hidden">Topic</label>
+    <input type="textarea" name="question_text" class="form-control" value="<%= it.questionText ? it.questionText : '' %>" id="inputQuestion" placeholder="Question">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Add question</button>
+  </div>
+</form>
+
+<% if (it.questions && it.questions.length > 0) { %>
+<div class="list-group">
+<% it.questions.forEach(question => { %>
+  <a href="/topics/<%= it.topic.id %>/questions/<%= question.id %>" class="list-group-item list-group-item-action">
+    <%= question.question_text %>
+  </a>
+<% }); %>
+</div>
+
+<% } else { %>
+
+<p>No questions yet.</p>
+
+<% } %>
