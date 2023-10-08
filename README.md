@@ -1,5 +1,9 @@
 # Project 2: Drill & Practice
 
+![Deno JS](https://img.shields.io/badge/deno%20js-000000?style=for-the-badge&logo=deno&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+
 _Part of the [FiTech Web Software Development](https://fitech101.aalto.fi/web-software-development) class._
 
 Explore a world of knowledge by crafting and exchanging questions across diverse subjects. Challenge yourself with quizzes featuring both your own and community-crafted questions.
@@ -14,6 +18,7 @@ The application has the following functionalities:
 ## Quiz API
 
 - `GET /api/questions/random` recieve a random quiz question in format:
+    ````json
     {
       "questionId": 1,
       "questionText": "How much is 1+1?",
@@ -23,23 +28,43 @@ The application has the following functionalities:
         { "optionId": 3, "optionText": "6" },
       ]
     }
+    ````
 - `POST /api/questions/answer` check your answer by sending a JSON in format:
-      {
-        "questionId": 1,
-        "optionId": 3,
-      }
+  ````json
+  {
+    "questionId": 1,
+    "optionId": 3,
+  }
+  ````
 
 ## View online
 
 To test the application online visit https://wsd-project-2.fly.dev/
+
 For testing admin functionality, use the login email _admin@admin.com_ with password _123456_
 
 ## Run locally
 
-The application can be run locally using Docker and docker-compose.
-From the root directory run `docker-compose up`.
+Running the application requires a [Docker](https://www.docker.com/get-started) and
+[Docker Compose](https://docs.docker.com/compose/install/) installation on your machine.
+
+To start the application and a Postgresql database, run the following command
+
+```bash
+docker-compose up
+```
+
+and access the application at [http://localhost:7777](http://localhost:7777)
 
 ## E2E Testing
 
 The Playwright E2E tests can be executed by running the following command from the root directory:
-`docker-compose run --entrypoint=npx e2e-playwright playwright test && docker-compose rm -sf`
+
+````bash
+docker-compose run --entrypoint=npx e2e-playwright playwright test && docker-compose rm -sf
+````
+
+In case of any errors such as Flyway migrations not completing, run `docker-compose down` and try again.
+
+Note that the database is not setup and torn for individual test runs and test database entries remain after the tests. 
+
